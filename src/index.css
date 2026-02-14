@@ -1,0 +1,419 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'GmarketSans';
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'GmarketSans';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'GmarketSans';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+}
+
+:root {
+  --primary: #B91C1C;
+  --primary-light: #FEE2E2;
+  --primary-dark: #991B1B;
+  --bg: #FFFBF5;
+  --bg-card: #FFFFFF;
+  --surface: #FEF3C7;
+  --text-primary: #1C1917;
+  --text-secondary: #78716C;
+  --text-tertiary: #A8A29E;
+  --correct: #16A34A;
+  --correct-light: #DCFCE7;
+  --wrong: #DC2626;
+  --wrong-light: #FEE2E2;
+  --border: #E7E5E4;
+  --hanja: #292524;
+  --stamp: #B91C1C;
+  --scroll-bg: linear-gradient(180deg, #FFFDF7 0%, #FFF9EC 100%);
+  --scroll-border: #E8DCC8;
+  --font: 'GmarketSans', 'Pretendard Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  background: var(--bg);
+  color: var(--text-primary);
+}
+
+/* ========================================
+   묵향서재 세계관 — 두루마리/인장/먹물 스타일
+   ======================================== */
+
+/* 두루마리 카드 (Scroll Card) */
+.scroll-card {
+  background: var(--scroll-bg);
+  border: 1px solid var(--scroll-border);
+  border-radius: 16px;
+  position: relative;
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.04),
+    inset 0 0 0 1px rgba(255,255,255,0.6);
+}
+
+/* 먹물 빈칸 (Ink Blank — the missing character slot) */
+.ink-blank {
+  border: 2px solid var(--primary);
+  background: rgba(185, 28, 28, 0.04);
+  border-radius: 8px;
+  position: relative;
+}
+.ink-blank::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed rgba(185, 28, 28, 0.2);
+  border-radius: 4px;
+}
+
+/* 인장 보기 버튼 (Seal Option Buttons) */
+.seal-option {
+  background: #FFFDF7;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  transition: all 0.15s;
+}
+.seal-option:active {
+  transform: scale(0.95);
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+/* 인장 스탬프 마크 (Stamp Mark) */
+.stamp-mark {
+  color: var(--stamp);
+  border: 2.5px solid var(--stamp);
+  border-radius: 4px;
+  font-weight: 900;
+  transform: rotate(-8deg);
+  opacity: 0.85;
+  display: inline-block;
+}
+
+/* 붓 자국 구분선 (Brush Stroke Divider) */
+.brush-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--scroll-border) 20%, var(--scroll-border) 80%, transparent 100%);
+  margin: 16px 0;
+}
+
+/* 통합 두루마리 (Result Scroll — 정보 덩어리화) */
+.result-scroll {
+  background: var(--scroll-bg);
+  border: 1px solid var(--scroll-border);
+  border-radius: 16px;
+  padding: 24px 20px;
+  position: relative;
+}
+.result-scroll::before,
+.result-scroll::after {
+  content: '';
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(232,220,200,0.6) 20%, rgba(232,220,200,0.6) 80%, transparent 100%);
+}
+.result-scroll::before { top: -2px; }
+.result-scroll::after { bottom: -2px; }
+
+/* 인장 타일 (Collection Seal Tile) */
+.seal-tile {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s;
+}
+.seal-tile.collected {
+  background: #FFFDF7;
+  border: 1px solid var(--scroll-border);
+}
+.seal-tile.locked {
+  background: #F5F5F4;
+  border: 1px solid transparent;
+}
+
+/* 서랍 탭 (Drawer Tab) */
+.drawer-tab {
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.drawer-tab.active {
+  background: #FFFDF7;
+  border-color: var(--scroll-border);
+  color: var(--primary);
+}
+.drawer-tab:not(.active) {
+  background: #F5F5F4;
+  color: var(--text-secondary);
+}
+
+/* 먹물 통 (Ink Well — accuracy metaphor) */
+.ink-well {
+  position: relative;
+  overflow: hidden;
+}
+.ink-well-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: height 1s ease-out;
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+
+@keyframes brushWrite {
+  0% { clip-path: inset(100% 0 0 0); opacity: 0; }
+  50% { clip-path: inset(30% 0 0 0); opacity: 1; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+
+@keyframes stampPress {
+  0% { transform: scale(2.5) rotate(-20deg); opacity: 0; }
+  50% { transform: scale(0.85) rotate(5deg); opacity: 1; }
+  70% { transform: scale(1.05) rotate(-2deg); }
+  100% { transform: scale(1) rotate(-8deg); opacity: 0.85; }
+}
+
+@keyframes shakeWrong {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cellPop {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes correctFlash {
+  0% { background: var(--bg); }
+  30% { background: var(--correct-light); }
+  100% { background: var(--bg); }
+}
+
+@keyframes wrongFlash {
+  0% { background: var(--bg); }
+  30% { background: var(--wrong-light); }
+  100% { background: var(--bg); }
+}
+
+@keyframes countdownPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes inkDrip {
+  0% { height: 0; }
+  100% { height: var(--ink-height); }
+}
+
+.animate-brush { animation: brushWrite 0.8s ease-out forwards; }
+.animate-stamp { animation: stampPress 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards; }
+.animate-shake { animation: shakeWrong 0.5s ease-in-out; }
+.animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+.animate-slide-up { animation: slideUp 0.5s ease-out forwards; }
+.animate-cell-pop { animation: cellPop 0.3s ease-out forwards; }
+.animate-correct-flash { animation: correctFlash 1.5s ease-out; }
+.animate-wrong-flash { animation: wrongFlash 1.5s ease-out; }
+
+/* ========================================
+   Streak Shield Modal (스트릭 보호 모달)
+   ======================================== */
+
+.streak-shield-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.streak-shield-modal {
+  background: #FFFDF7;
+  border: 1px solid var(--scroll-border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+}
+
+.shield-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 4px;
+  line-height: 0;
+}
+
+.shield-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.shield-title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.shield-title .streak-count {
+  color: var(--primary);
+}
+
+.shield-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.shield-streak-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #F5F5F4;
+  border-radius: 12px;
+}
+
+.streak-fire {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.streak-danger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-tertiary);
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: line-through;
+}
+
+.shield-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.shield-btn:active {
+  transform: scale(0.97);
+}
+
+/* ========================================
+   AD Badges & Notices
+   ======================================== */
+
+.ad-badge {
+  background: rgba(255,255,255,0.25);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ad-badge-inline {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.ad-notice {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: 10px;
+}
